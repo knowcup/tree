@@ -1,12 +1,7 @@
 {
   "name": "knowcup/tree",
-  "type": "composer-plugin",
-  "require": {
-    "composer-plugin-api": "^1.0"
-  },
-  "require-dev": {
-    "composer/composer": "1.0.*@dev"
-  },
+  "require": {},
+  "require-dev": {},
   "license": "Apache-2.0",
   "authors": [
     {
@@ -19,7 +14,5 @@
       "knowcup\\tree\\": "src"
     }
   },
-  "extra": {
-    "class": "knowcup\\tree\\Plugin"
-  }
+  "extra": {}
 }
