@@ -1,0 +1,25 @@
+{
+  "name": "knowcup/tree",
+  "type": "composer-plugin",
+  "require": {
+    "composer-plugin-api": "^1.0"
+  },
+  "require-dev": {
+    "composer/composer": "1.0.*@dev"
+  },
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "four",
+      "email": "497439092@qq.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "knowcup\\tree\\": "src"
+    }
+  },
+  "extra": {
+    "class": "knowcup\\tree\\Plugin"
+  }
+}
