@@ -13,7 +13,7 @@ php版本 >= 7.0
     [ 'id' => 7, 'parent_id' => 3, 'name' => '第二级 Four' ],
     [ 'id' => 8, 'parent_id' => 3, 'name' => '第二级 Five' ],
     [ 'id' => 9, 'parent_id' => 5, 'name' => '第三级 One' ],
-    [ 'id' => 10, 'parent_id' => 3, 'name' => '第三级 Two' ]
+    [ 'id' => 10, 'parent_id' => 5, 'name' => '第三级 Two' ]
 ];
 
 转为树状列表（平行）：
