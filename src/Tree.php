@@ -54,17 +54,17 @@ class Tree
      * @return array
      */
     public static function setNeatArr( array $dataArr ):array{
-        // 已经排过序的元素
-        $haveNeat = [];
 
         if(count($dataArr) > 0){
             foreach ($dataArr as $item) {
                 $id = $item[self::$primKey];
                 $pid = $item[self::$parentField];
+                // 当前节点的位置
+                $site = array_search($id, self::$seqArr);
 
                 // 避免上级ID为当前ID  视为脏数据 忽略
                 // 过滤已经排过序的元素
-                if ($pid == $id || isset($haveNeat[$id])) {
+                if ($pid == $id || false !== $site) {
                     continue;
                 }
 
@@ -76,7 +76,6 @@ class Tree
                     $item[self::$levelField] = self::$primArr[$id][self::$levelField] = 1;
                     array_push(self::$seqArr, $id);
                     array_push(self::$neatArr, $item);
-                    $haveNeat[$id] = 1;
                 } else {
                     // 查找上级是否存在
                     // 存在：放在上级节点的前面
@@ -91,7 +90,7 @@ class Tree
                         $ppid = self::$primArr[$pid][self::$parentField];
                         // 从当前位置开始， 第一个上级ID = 当前上级的上级的ID  视为：当前上级的最后一个元素
                         for($i = $parentSite+1; $i<=$length; $i++ ){
-                            if(!isset(self::$neatArr[$i]) || self::$neatArr[$i][self::$parentField] == $ppid){
+                            if(!isset(self::$neatArr[$i]) || empty(self::$neatArr[$i][self::$parentField]) || self::$neatArr[$i][self::$parentField] == $ppid){
                                 $parentSite = $i-1;
                                 break;
                             }
@@ -99,7 +98,6 @@ class Tree
 
                         array_splice(self::$seqArr, $parentSite+1,0, $id);
                         array_splice(self::$neatArr, $parentSite+1,0, array($item));
-                        $haveNeat[$id] = 1;
 
                         // 不存在：查找所有上级元素  进行排序
                     }else{
