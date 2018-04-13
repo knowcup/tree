@@ -187,10 +187,14 @@ class Tree
     private static function getParentArr(int $id): array {
         self::$pareArr[] = self::$primArr[$id];
 
-        $pid = self::$primArr[$id][self::$parentField];
-        if(!empty($pid) || isset(self::$neatArr[$pid])){
-            self::getParentArr($pid);
+        if(isset(self::$primArr[$id])){
+            $pid = self::$primArr[$id][self::$parentField];
+            if(!empty($pid) || isset(self::$neatArr[$pid])){
+                self::getParentArr($pid);
+            }
         }
+
+        return self::$pareArr;
     }
 
     /**
